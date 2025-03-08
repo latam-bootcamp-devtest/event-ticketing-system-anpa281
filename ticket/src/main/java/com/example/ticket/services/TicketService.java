@@ -40,4 +40,19 @@ public class TicketService {
 
         return ticketRepository.save(ticket);
     }
+    @Transactional
+    public void deleteTicket(Long id) {
+        Ticket ticket = ticketRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ticket not found"));
+
+        if (ticket.getEvent().getDate().isBefore(LocalDate.now())){
+            throw new RuntimeException("Past date can not");
+        }
+
+        Event event = ticket.getEvent();
+        event.setAvailableSeats(event.getAvailableSeats() + 1);
+        eventRepository.save(event);
+
+        ticketRepository.delete(ticket);
+    }
 }

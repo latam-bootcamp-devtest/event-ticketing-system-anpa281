@@ -21,4 +21,6 @@ public class EventService {
     public Page<Event> getEvents(Pageable pageable) {
         return eventRepository.findAll(pageable);
     }
+
+
 }

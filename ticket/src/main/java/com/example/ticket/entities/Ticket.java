@@ -24,6 +24,8 @@ public class Ticket {
 
     private LocalDate ticketDate;
 
+    private Long userId;
+
     public Long getTicketId() {
         return ticketId;
     }
@@ -48,6 +50,11 @@ public class Ticket {
         this.ticketDate = ticketDate;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
 
-
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
